@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+
+body {
+  background-color: rgb(238, 136, 125);
+}
+
+.app {
+  display: flex;
+  font-family: "Questrial", sans-serif;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1vw;
+}
+
+.chat {
+  width: 79vw;
+  height: 86vh;
+  background-color: rgb(233, 220, 218);
+  color: rgb(68, 65, 134);
+  border-radius: 6px;
+  padding-left: 1vw;
+  font-size: 1.5vw;
+  overflow-y: scroll;
+}
+
+.chat::-webkit-scrollbar {
+  display: none;
+}
+
+.input {
+  width: 80vw;
+  justify-content: space-around;
+  margin-top: 2vh;
+}
+
+.input input {
+  width: 71vw;
+  font-size: 2vw;
+  padding: 10px;
+  border-radius: 10px;
+  font-family: "Questrial", sans-serif;
+}
+
+.send-button {
+  float: right;
+  font-size: 2vw;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  background-color: rgb(233, 220, 218);
+  color: rgb(68, 65, 134);
+  font-family: "Questrial", sans-serif;
+}
+
+.send-button:active {
+  transform: scale(0.9);
+}
+
+.connected {
+  width: 19vw;
+  background-color: rgb(63, 69, 102);
+  border-radius: 6px;
+  padding-left: 1vw;
+  padding-top: 1vw;
+  font-size: 2vw;
+  color: rgb(231, 210, 198);
+  overflow-y: scroll;
+}
+
+.connected::-webkit-scrollbar {
+  display: none;
+}
+
+.connected span {
+  font-size: 1.4vw;
+}
