@@ -22,9 +22,15 @@ const UserSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
+    isConnected: {
+      type: Boolean,
+      trim: true,
+      required: false,
+    },
     bio: String,
     birthDate: Date,
   },
+
   { timestamps: true }
 );
 

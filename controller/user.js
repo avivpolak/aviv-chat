@@ -8,15 +8,21 @@ exports.login = async (req, res, next) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email: email });
-
+    console.log(user);
     if (!user) {
       return res.status(403).send('No such email in our system');
     }
     const isCorrectPassword = await bcrypt.compare(password, user.password);
+
     if (!isCorrectPassword) {
       return res.status(403).send('incorrect Password');
     }
 
+    const monfgo = await User.findOneAndUpdate(
+      { email: email },
+      { isConnected: true }
+    );
+    console.log(monfgo);
     const refreshToken = jwt.sign(user.toObject(), process.env.SECRET, {
       expiresIn: '24h',
     });

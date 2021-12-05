@@ -27,7 +27,7 @@ exports.chatStream = (req, res) => {
 
   em.addListener('login/logout', async () => {
     try {
-      const users = await User.find({});
+      const users = await User.find({ isConnected: true });
       const usersList = users.map((user) => user.username);
 
       res.write(`data: ${JSON.stringify({ usersList })} \n\n`);
@@ -42,7 +42,10 @@ exports.chatStream = (req, res) => {
   req.on('close', async () => {
     try {
       console.log(`${username} disconnected`);
-      await User.findOneAndDelete({ username: username });
+      await User.findOneAndUpdate(
+        { username: username },
+        { isConnected: false }
+      );
 
       em.emit('login/logout');
     } catch (error) {
