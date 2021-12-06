@@ -37,7 +37,11 @@ export default function Login() {
 
       if (response.status === 200) {
         navigate('/chat', {
-          state: { username: response.data.username },
+          state: {
+            username: response.data.username,
+            accessToken: response.data.accessToken,
+            refreshToken: response.data.refreshToken,
+          },
           replace: true,
         });
       } else {

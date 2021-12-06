@@ -1,19 +1,19 @@
-import "../styles/chat.css";
-import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router";
-import { Notyf } from "notyf";
-import "notyf/notyf.min.css";
-import Message from "./Message";
-import User from "./User";
+import '../styles/chat.css';
+import axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router';
+import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css';
+import Message from './Message';
+import User from './User';
 
 const notyf = new Notyf({
   types: [
     {
-      type: "success",
+      type: 'success',
       duration: 3000,
       dismissible: true,
-      position: { x: "right", y: "bottom" },
+      position: { x: 'right', y: 'bottom' },
     },
   ],
 });
@@ -26,11 +26,14 @@ export default function Chat() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    const source = new EventSource(`http://localhost:8080/chat?username=${state.username}`);
+    const source = new EventSource(
+      `http://localhost:8080/chat?username=${state.username}`
+    );
 
     source.onopen = (event) => {
-      notyf.success("Welcome to the chat");
-      console.log("Welcome to the chat");
+      notyf.success('Welcome to the chat');
+      console.log('Welcome to the chat');
+      console.log(state.accessToken);
     };
 
     source.onmessage = function logEvents(event) {
@@ -47,8 +50,13 @@ export default function Chat() {
   }, []);
 
   async function sendMsg() {
+    console.log(state.username);
     try {
-      await axios.post("/chat", {
+      let acceess = await axios.post('/user/token', {
+        token: state.refreshToken,
+      });
+      console.log(acceess.data.accessToken);
+      await axios.post('/chat', {
         user: state.username,
         message: inputEl.current.value,
       });
@@ -71,9 +79,9 @@ export default function Chat() {
             type="text"
             placeholder="write your message here"
             onKeyPress={(event) => {
-              if (event.key === "Enter") {
+              if (event.key === 'Enter') {
                 sendMsg();
-                inputEl.current.value = "";
+                inputEl.current.value = '';
               }
             }}
           />

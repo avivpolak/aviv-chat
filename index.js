@@ -34,10 +34,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve('./views/build/index.html'));
 });
 
-app.get('/', (req, res) => {
-  res.send('working');
-});
-app.use('/chat', chatRouter);
+app.use('/chat', jsonParser, chatRouter);
 app.use('/user', jsonParser, userRouter);
 
 // unknownEndpoint handling middleware
