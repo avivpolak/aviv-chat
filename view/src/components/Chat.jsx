@@ -21,6 +21,7 @@ const notyf = new Notyf({
 export default function Chat() {
   const chatEl = useRef();
   const inputEl = useRef();
+  const twoStepEl = useRef();
   const { state } = useLocation();
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
@@ -48,7 +49,17 @@ export default function Chat() {
       }
     };
   }, []);
-
+  async function toggleTwoStep() {
+    try {
+      console.log('toggleing');
+      await axios.patch('/toggleTwoStep', {
+        user: state.username,
+        twoStep: twoStepEl.current.value,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
   async function sendMsg() {
     console.log(state.username);
     try {
@@ -103,6 +114,13 @@ export default function Chat() {
           <User user={user} />
         ))}
       </div>
+      <input
+        ref={twoStepEl}
+        type={'checkbox'}
+        onChange={() => {
+          toggleTwoStep();
+        }}
+      />
     </div>
   );
 }
