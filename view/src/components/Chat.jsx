@@ -49,6 +49,7 @@ export default function Chat() {
       }
     };
   }, []);
+
   async function toggleTwoStep() {
     try {
       console.log('toggleing');

@@ -46,3 +46,4 @@ app.use(errorHandlingMiddleware);
 app.listen(port, () => {
   console.log(`litsening in port ${port}`);
 });
+module.exports = { app };
