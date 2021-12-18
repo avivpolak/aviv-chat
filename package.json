@@ -23,6 +23,8 @@
     "supertest": "^6.1.6"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15"
   }
