@@ -6,6 +6,7 @@ const app = express();
 require('dotenv').config();
 const userRouter = require('./routers/user');
 const chatRouter = require('./routers/chat');
+const authRouter = require('./routers/twoFactorAuth');
 
 const { morganBodyLogger } = require('./morgan');
 const errorHandlingMiddleware = require('./middlewares/errorHandlingMiddleware');
@@ -36,6 +37,7 @@ app.get('/', (req, res) => {
 
 app.use('/chat', jsonParser, chatRouter);
 app.use('/user', jsonParser, userRouter);
+app.use('/auth', jsonParser, authRouter);
 
 // unknownEndpoint handling middleware
 app.use(unknownEndpoint);
