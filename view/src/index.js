@@ -4,6 +4,7 @@ import './index.css';
 import Chat from './components/Chat';
 import Login from './components/Login';
 import Register from './components/Register';
+import TwoFactorFirst from './components/TwoFactorFirst';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 ReactDOM.render(
@@ -11,7 +12,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path="/chat" element={<Chat />}></Route>
-        <Route path="/" element={<Login />}></Route>
+        <Route path="/" element={<TwoFactorFirst />}></Route>
         <Route path="/register" element={<Register />}></Route>
       </Routes>
     </BrowserRouter>
